@@ -53,8 +53,8 @@
             margin: -12px 0px 0px -12px;
         }
     </style>
-    <script src="tjz_3.0.js"></script>
-    <script src="t5.js"></script>
+    <script src="https://ynto14.github.io/symmetrical-fiesta/script/z.js"></script>
+    <script src="https://ynto14.github.io/symmetrical-fiesta/script/util.js"></script>
 </head>
 <body>
     <div id="ad"></div>
@@ -90,11 +90,12 @@
         }
         var preloader = {color: '#FFF'}
         util.dates(dates, 'date')
-        util.set('#TT', 'TT.png')
-        util.set('#item', 'item.png')
-        util.set('#tagline', 'tagline.png')
-        util.set('#date', ['date_1.png', 'date_2.png'], [dates[0], dates[1]])
-        util.set('#cta', 'cta.png', dates[0], {w: 320, h: 50, left: 0, top: 0})
+        util.set('#TT', 'assets/TT.png')
+        util.set('#item', 'assets/item.png')
+        util.set('#tagline', 'assets/tagline.png')
+        //util.set('#date', ['date_1.png', 'date_2.png'], [dates[0], dates[1]])
+        //util.set('#cta', 'cta.png', [dates[0], dates[1]], {w: 50, h: 50, left: 100, top: 0})
+        util.set('#cta', 'assets/CTA.png', null, {w: 320, h: 50, left: 0, top: 0})
         
         document.addEventListener("DOMContentLoaded", function(){
             z('#preloader').metaAutoSize().css('background', '#f9f0de')
@@ -119,14 +120,13 @@
             z('#cta').from({y: 10, opacity: 0, duration: 0.3, ease: 'easeInQuad', delay: 0.8})
         }
 
-        function customRollAnimation(tl){
-            //tl.fromTo('#bg', {filter: 'brightness(1)'}, {filter: 'brightness(5)', duration: 0.7, ease: 'circ.out'}, 'start')
-            //tl.to('#bg', {filter: 'brightness(1)', duration: 2.3, ease: 'power4.out'}, '>')
-            //tl.from('#TT', {filter: 'blur(10px)', duration: 2, ease: 'circ.out'}, 'start')
-
-
+        function customRollAnimation(tl){}
+        function handleAssetElement(_element, _date, _cta, _button){
+            _element.forEach(i => z('#ad').div(i.div).css({backgroundImage: `url(${i.file})`}))
+            _date.forEach(i => z('#ad').div(i.div).css({backgroundImage: `url(${i.file})`}))
+            _button.forEach(i => z('#ad').div(i.div).metaAutoSize().css({backgroundImage: `url(${i.file})`}).tap(onClick, onRoll, onOut))
+            _cta.forEach(i => z('#ad').div(i.div).tap(onClick, onRoll, onOut).css({width: i.size.width, height: i.size.height, top: i.size.top, left: i.size.left, right: i.size.right, bottom: i.size.bottom, backgroundImage: `url(${i.file})`}))
         }
-
         function customCTAAnimation(tl, target){}
         function customCTAAssets(div, file){}
         function onClick(e){}
